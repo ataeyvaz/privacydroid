@@ -1,0 +1,27 @@
+# PrivacyDroid — beyaz liste (asla engellenmez)
+# Bu listedeki domainler HER ZAMAN iletilir; engelleme modu ne olursa olsun.
+# Eşleşme kuralı: tam domain VEYA ".domain" ile biten alt domainler.
+
+# --- CDN'ler (içerik de taşır, engellenirse uygulama bozulur) ---
+fbcdn.net
+cdninstagram.com
+akamaihd.net
+akamai.net
+cloudfront.net
+fastly.net
+
+# --- Google çekirdek servisleri (reklam değil) ---
+googleapis.com
+gstatic.com
+
+# --- Ödeme sistemleri ---
+stripe.com
+iyzico.com
+paypal.com
+
+# --- Bankacılık (Türkiye) ---
+garantibbva.com.tr
+akbank.com
+isbank.com.tr
+vakifbank.com.tr
+yapikredi.com.tr

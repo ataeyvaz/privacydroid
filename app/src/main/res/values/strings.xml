@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PrivacyDroid</string>
+    <string name="app_description">Android gizlilik monitörü</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">PrivacyDroid</string>
+    <string name="onboarding_subtitle">Arka planda ne oluyor, görünür kıl</string>
+    <string name="onboarding_next">Devam</string>
+    <string name="onboarding_grant">İzin Ver</string>
+    <string name="onboarding_skip">Şimdilik Geç</string>
+
+    <!-- Permissions -->
+    <string name="permission_usage_stats_title">Uygulama Kullanım İstatistikleri</string>
+    <string name="permission_usage_stats_desc">Hangi uygulamaların mikrofon, kamera ve konum eriştiğini takip etmek için gerekli. Sistem ayarlarından manuel onay gerekir.</string>
+    <string name="permission_notifications_title">Bildirimler</string>
+    <string name="permission_notifications_desc">Şüpheli arka plan aktivitesi tespit edildiğinde seni bilgilendirmek için kullanılır.</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Genel Bakış</string>
+    <string name="dashboard_today_activity">Bugünkü Aktivite</string>
+    <string name="dashboard_suspicious">Şüpheli</string>
+    <string name="dashboard_no_activity">Bugün şüpheli aktivite tespit edilmedi</string>
+
+    <!-- Timeline -->
+    <string name="timeline_title">Zaman Çizelgesi</string>
+
+    <!-- App Detail -->
+    <string name="appdetail_title">Uygulama Detayı</string>
+    <string name="appdetail_permission_history">İzin Geçmişi</string>
+    <string name="appdetail_background_access">Arka Plan Erişimi</string>
+    <string name="appdetail_open_settings">Uygulama Ayarlarına Git</string>
+    <string name="appdetail_uninstall">Kaldır</string>
+
+    <!-- Permission types -->
+    <string name="permission_camera">Kamera</string>
+    <string name="permission_microphone">Mikrofon</string>
+    <string name="permission_location_fine">Konum (Hassas)</string>
+    <string name="permission_location_coarse">Konum (Yaklaşık)</string>
+    <string name="permission_contacts">Rehber</string>
+    <string name="permission_call_log">Arama Geçmişi</string>
+    <string name="permission_calendar">Takvim</string>
+    <string name="permission_sms">SMS</string>
+    <string name="permission_storage">Depolama</string>
+    <string name="permission_phone">Telefon</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_scan_interval">Tarama Aralığı</string>
+    <string name="settings_log_retention">Log Saklama Süresi</string>
+    <string name="settings_notifications">Bildirimler</string>
+    <string name="settings_background_scan">Arka Plan Tarama</string>
+
+    <!-- Notification channels -->
+    <string name="notification_channel_suspicious_name">Şüpheli Aktivite</string>
+    <string name="notification_channel_suspicious_desc">Arka planda olağandışı izin erişimi tespit edildiğinde bildirim gönderir</string>
+    <string name="notification_channel_summary_name">Günlük Özet</string>
+    <string name="notification_channel_summary_desc">Günlük izin aktivite özetini gösterir</string>
+    <string name="notification_channel_service_name">İzleme Servisi</string>
+    <string name="notification_channel_service_desc">Arka plan izleme servisi çalışıyor</string>
+
+    <!-- Notification actions -->
+    <string name="notification_action_details">Detayları Gör</string>
+    <string name="notification_action_revoke">İzni Kaldır</string>
+
+    <!-- Common -->
+    <string name="background">Arka Plan</string>
+    <string name="foreground">Ön Plan</string>
+    <string name="unknown_app">Bilinmeyen Uygulama</string>
+    <string name="no_data">Veri yok</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="error_generic">Bir hata oluştu</string>
+    <string name="retry">Tekrar Dene</string>
+    <string name="filter_today">Bugün</string>
+    <string name="filter_week">Bu Hafta</string>
+    <string name="filter_month">Bu Ay</string>
+</resources>

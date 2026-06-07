@@ -1,0 +1,50 @@
+# PrivacyDroid — DNS reklam engelleme listesi
+# EasyList'ten seçilmiş, güvenli (yanlış pozitifi düşük) reklam domainleri.
+# Eşleşme kuralı: tam domain VEYA ".domain" ile biten alt domainler.
+# CDN ve uygulama içeriği taşıyan domainler BURAYA EKLENMEZ (ad_whitelist.txt'e bakın).
+
+# --- Reklam ağları ---
+doubleclick.net
+googlesyndication.com
+pagead2.googlesyndication.com
+adservice.google.com
+googleadservices.com
+adnxs.com
+adsrvr.org
+advertising.com
+ads.yahoo.com
+criteo.com
+criteo.net
+pubmatic.com
+rubiconproject.com
+openx.net
+appnexus.com
+smartadserver.com
+yieldmanager.com
+media.net
+contextweb.com
+casalemedia.com
+adtech.de
+
+# --- İçerik öneri (native) reklamları ---
+taboola.com
+outbrain.com
+revcontent.com
+mgid.com
+
+# --- Mobil reklam SDK ağları ---
+unity3d.com
+ironsrc.com
+applovin.com
+chartboost.com
+vungle.com
+tapjoy.com
+mopub.com
+flurry.com
+
+# --- Reklam ölçümleme / hedefleme ---
+scorecardresearch.com
+quantserve.com
+bluekai.com
+demdex.net
+everesttech.net

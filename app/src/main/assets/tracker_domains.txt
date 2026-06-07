@@ -1,0 +1,158 @@
+# Bilinen tracker ve analitik sunucuları
+# Format: domain (yorum satırları # ile başlar)
+
+# Facebook / Meta
+graph.facebook.com
+api.facebook.com
+mqtt-mini.facebook.com
+edge-star-mini.facebook.com
+connect.facebook.net
+an.facebook.com
+fbcdn.net
+fb.com
+edge-mqtt.facebook.com
+mqtt.facebook.com
+
+# Instagram
+api.instagram.com
+graph.instagram.com
+
+# Google Analytics / Ads
+analytics.google.com
+firebase.googleapis.com
+googleanalytics.com
+googletagmanager.com
+doubleclick.net
+googlesyndication.com
+googleadservices.com
+adservice.google.com
+googleads.g.doubleclick.net
+admob.googleapis.com
+pagead2.googlesyndication.com
+cm.g.doubleclick.net
+s0.2mdn.net
+tpc.googlesyndication.com
+app-measurement.com
+firebase.google.com
+firebaselogging.googleapis.com
+
+# AppsFlyer
+api.appsflyer.com
+sdk.appsflyer.com
+t.appsflyer.com
+t.af-sdk.com
+
+# Adjust
+api.adjust.com
+app.adjust.com
+attribution.adjust.com
+s2s.adjust.com
+
+# Amplitude
+api.amplitude.com
+analytics.amplitude.com
+cdn.amplitude.com
+
+# Mixpanel
+api.mixpanel.com
+api2.mixpanel.com
+decide.mixpanel.com
+
+# Segment
+api.segment.io
+api.segment.com
+cdn.segment.com
+cdn.segment.io
+
+# Braze / Appboy
+sdk.braze.com
+sdk.iad-01.braze.com
+sdk.iad-02.braze.com
+sdk.iad-03.braze.com
+sdk.iad-04.braze.com
+sdk.iad-05.braze.com
+sdk.iad-06.braze.com
+sdk.iad-07.braze.com
+iad.appboy.com
+
+# Push
+onesignal.com
+cdn.onesignal.com
+fcm.googleapis.com
+push.services.mozilla.com
+
+# TikTok / ByteDance
+analytics.tiktok.com
+log.tiktokv.com
+log.byteoversea.com
+business.tiktok.com
+mon.snssdk.com
+
+# MoPub / AppLovin
+sdk.mopub.com
+ads.mopub.com
+sdk.applovin.com
+api.applovin.com
+ms.applovin.com
+
+# IronSource / Unity
+ironsrc.com
+mediation.ironsrc.com
+unity3d.com
+auction.unityads.unity3d.com
+config.unityads.unity3d.com
+
+# Sentry / Bugsnag / Crashlytics
+sentry.io
+o123456.ingest.sentry.io
+notify.bugsnag.com
+sessions.bugsnag.com
+reports.crashlytics.com
+crashlytics.com
+bugsnag.com
+
+# Branch.io
+cdn.branch.io
+api2.branch.io
+
+# Flurry (Yahoo)
+flurry.com
+mobile.yahoo.com
+
+# Twitter / X
+ads.twitter.com
+analytics.twitter.com
+t.co
+connect.facebook.net
+
+# Amazon Tracking
+tracking.amazon.com
+fls-na.amazon.com
+s.amazon-adsystem.com
+
+# Singular
+events.singular.net
+sdk-api.singular.net
+
+# Leanplum
+api.leanplum.com
+www.leanplum.com
+
+# Kochava
+control.kochava.com
+track.kochava.com
+
+# Moat Analytics
+z.moatads.com
+
+# InMobi
+api.inmobi.com
+sdk.inmobi.com
+
+# Criteo
+static.criteo.net
+dis.criteo.com
+
+# AppNexus / Xandr
+ib.adnxs.com
+mobile.adnxs.com

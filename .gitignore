@@ -1,0 +1,34 @@
+*.iml
+.gradle
+/.gradle
+/local.properties
+local.properties
+/.idea
+.idea
+.DS_Store
+/build
+build/
+/captures
+.externalNativeBuild
+.cxx
+.kotlin
+
+# APK / paket çıktıları
+/app/release/
+*.apk
+*.aab
+
+# Keystore — GİZLİ, kesinlikle commit etme
+*.jks
+*.keystore
+keystore.properties
+
+# Firebase / Google servis yapılandırması (gizli)
+google-services.json
+
+# Room şema dosyaları (opsiyonel — takip etmek için kaldırabilirsin)
+# /app/schemas/
+
+# Locked/binary user doc — excluded from VCS
+PrivacyDroid_Kullanim_Kilavuzu.docx
+*.docx

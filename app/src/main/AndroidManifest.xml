@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        PACKAGE_USAGE_STATS: AppOpsManager üzerinden izin geçmişini okumak için zorunlu.
+        Kullanıcının Ayarlar > Özel Uygulama Erişimi'nden manuel onaylaması gerekir.
+    -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+    <!-- Bildirim göndermek için (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+        INTERNET: SADECE PrivacyVpnService'in DNS iletmesi için gereklidir.
+        VPN, uygulamaların DNS sorgularını TUN'da yakalar ve gerçek DNS sunucusuna
+        (protect() ile korunan soket üzerinden) iletmek zorundadır; aksi halde
+        soket oluşturma "EPERM" ile başarısız olur ve VPN açıkken DNS çözülemez
+        (internet kesilir). Bunun dışında uygulama hiçbir ağ isteği yapmaz —
+        kullanıcı verisi cihaz dışına çıkmaz.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- NetworkStatsManager için (Faz 2) -->
+    <uses-permission android:name="android.permission.READ_NETWORK_USAGE_HISTORY"
+        tools:ignore="ProtectedPermissions"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+    <!-- Ön plan servis izinleri -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- specialUse tipi foreground servis için (API 34+) — PrivacyVpnService (DNS VPN) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <!-- Ağ durumu izleme -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--
+        Android 11+ (API 30) paket görünürlük kısıtlaması:
+        Bu izin olmadan getInstalledApplications() yalnızca ~5 uygulama döner.
+        Uygulama envanteri ve gizlilik analizi için zorunludur.
+        F-Droid ve APK dağıtımında otomatik onaylanır.
+    -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+    <!--
+        Korelasyon motoru MediaStore sorgusu için gerekli (opsiyonel).
+        İzin verilmezse newMediaCreated=false ile çalışmaya devam eder.
+        READ_EXTERNAL_STORAGE: Android 9–12 (maxSdkVersion=32)
+        READ_MEDIA_IMAGES/VIDEO: Android 13+ (API 33+)
+    -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <!-- WorkManager için boot receiver -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Modül 2: İnternet bağlantı izleme (NetworkMonitorService) -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- Modül 3: VPN tabanlı tracker tespiti (LocalVpnService iskelet) -->
+    <uses-permission android:name="android.permission.BIND_VPN_SERVICE"
+        tools:ignore="ProtectedPermissions"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+    <application
+        android:name=".PrivacyDroidApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PrivacyDroid">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PrivacyDroid">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            BootReceiver: Cihaz yeniden başladığında WorkManager periyodik görevini
+            yeniden planlar. OEM agresif görev öldürmelerine karşı güvence sağlar.
+            QUICKBOOT_POWERON: Xiaomi ve HTC cihazlar için.
+        -->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+            PermissionMonitorService: Gerçek zamanlı izleme modu için foreground service.
+            Android 14+ (API 34) foregroundServiceType zorunlu.
+            dataSync: Süregelen arka plan verisi toplama için uygun tip.
+        -->
+        <service
+            android:name=".service.PermissionMonitorService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!--
+            NetworkMonitorService: ConnectivityManager.NetworkCallback üzerinden
+            internet bağlantı olaylarını izler. Root gerektirmez.
+        -->
+        <service
+            android:name=".service.NetworkMonitorService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!--
+            PrivacyVpnService: DNS sorgularını yakalayan yerel VPN.
+            Yalnızca 8.8.8.8/32 ve 8.8.4.4/32 trafiği TUN'dan geçer.
+            Trafik dışarıya gönderilmez — tüm analiz cihazda yapılır.
+            Foreground service: Android 8+ için zorunlu.
+        -->
+        <service
+            android:name=".service.PrivacyVpnService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="DNS monitoring VPN — no data leaves the device" />
+        </service>
+
+        <!--
+            WorkManager'ı Hilt ile başlat:
+            Varsayılan androidx.startup WorkManagerInitializer'ı KALDIRIYORUZ ki
+            WorkManager, PrivacyDroidApp'in Configuration.Provider'ını (yani
+            HiltWorkerFactory'yi) kullansın. Bu sağlanmazsa WorkManager varsayılan
+            reflection tabanlı WorkerFactory ile başlar ve @HiltWorker sınıfları
+            (TrackerScanWorker, PermissionScanWorker, ...) şu hatayla başarısız olur:
+              "Could not instantiate ... NoSuchMethodException <init>[Context, WorkerParameters]"
+        -->
+        <!--
+            FileProvider: PDF raporlarını (Android 9 ve altında uygulamaya özel
+            Documents dizinine yazılanları) Share Sheet ve "Dosyalarda Aç" ile
+            paylaşmak için güvenli content:// Uri üretir.
+        -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- getExternalFilesDir(DIRECTORY_DOCUMENTS)/PrivacyDroid altındaki PDF raporları -->
+    <external-files-path
+        name="reports"
+        path="Documents/PrivacyDroid/" />
+</paths>
