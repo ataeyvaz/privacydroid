@@ -35,6 +35,11 @@ ne yaptığını bilirse bilinçli kararlar alabilir.
    minimum polling kullan.
 4. **Şeffaf kod:** Açık kaynak. Her fonksiyon ne yaptığını açıklayan yorum içermeli.
 5. **Engellenemezlik:** Play Store'a bağımlı olma. APK ve F-Droid ile dağıtılabilir ol.
+6. **Korelasyon motoru:** Sensör erişimi + ağ trafiği + dosya sistemi olayları
+   milisaniye hassasiyetle eşleştirilmeli. Her olay zinciri bağımsız kanıt
+   niteliği taşımalı.
+7. **Sistem uygulamaları da izleme kapsamında:** FLAG_SYSTEM uygulamaları için
+   de korelasyon analizi yapılmalı. "Sistem uygulaması = güvenli" varsayımı yok.
 
 ### Kullanılan API'ler (Root Gerektirmez)
 - `AppOpsManager` — izin kullanım geçmişi

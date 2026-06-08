@@ -246,6 +246,39 @@ Derin analiz, davranış kalıpları, anomali tespiti.
 - [ ] Açılma/kapanma anları arasındaki ağ aktivitesini logla
 - [ ] Uçak modu bypass tespiti
 
+#### 4.5 — Olay Zinciri Görünümü
+- [ ] Milisaniye hassasiyetli timestamp zinciri
+- [ ] Sensör + Ağ + Dosya olayları tek ekranda
+- [ ] "Kamera kapandıktan 691ms sonra 2.3 MB veri gönderildi" formatı
+- [ ] Korelasyon açıklaması Türkçe
+- [ ] PDF export + KVKK başvurusuna hazır
+
+#### 4.6 — Sistem Uygulamaları Korelasyonu
+- [ ] "Ayarlar", "Telefon", "Galeri" gibi sistem uygulamalarının sensör erişimini aynı anda ağ trafiğiyle korelasyon
+- [ ] "Ayarlar kameraya erişirken samsung-analytics.com'a bağlandı" tespiti
+- [ ] Sistem uygulamaları için ayrı risk profili
+
+#### 4.7 — Davranış Değişikliği Tespiti
+- [ ] Dünkü vs bugünkü erişim profili karşılaştırması
+- [ ] "Facebook dün 47 kez sensöre erişiyordu, bugün 0 kez" anomali tespiti
+- [ ] Remote Config sorgusu + davranış değişikliği korelasyonu: "Uzaktan komut aldı mı?"
+
+#### 4.8 — ContentProvider Tarayıcı
+- [ ] Her uygulamanın export edilmiş ContentProvider'larını tara
+- [ ] İzinsiz erişilebilir olanları işaretle
+- [ ] "Bu uygulama verisini dışarıya açık bırakmış" uyarısı
+
+#### 4.9 — Upload Döngüsü Tespiti
+- [ ] FileObserver ile shared storage izle
+- [ ] Geçici dosya oluştu + silindi + aynı anda ağ trafiği = upload döngüsü
+- [ ] Magic bytes ile dosya türü tespiti (ses, video, fotoğraf)
+
+#### 4.10 — Trafik Parmak İzi
+- [ ] TLS fingerprint + paket boyutu analizi
+- [ ] "Bu trafik ses kaydına benziyor"
+- [ ] "Bu trafik fotoğraf transferine benziyor"
+- [ ] Boyut/zaman oranından içerik tahmini
+
 ---
 
 ## FAZ 5 — Topluluk & Dağıtım ⏳
@@ -275,6 +308,18 @@ Uygulamayı sürdürülebilir, ulaşılabilir, engellenemez hale getir.
 - [ ] Kod güvenlik taraması
 - [ ] Bağımlılık güvenlik kontrolü
 - [ ] Topluluk code review
+
+#### 5.5 — Steganografi / Kimlik Gizleme
+- [ ] Build flavor sistemi ile çoklu paket adı
+- [ ] Masum sistem adlarıyla APK dağıtımı
+- [ ] İmza rotasyonu stratejisi
+- [ ] "PrivacyDroid tespitine karşı" koruma
+
+#### 5.6 — Kolektif Kanıt Platformu
+- [ ] Opsiyonel anonim veri paylaşımı
+- [ ] "Bu ay Türkiye'den 47.832 gece erişimi"
+- [ ] Merkezi olmayan, gizlilik odaklı
+- [ ] Medya ve KVKK için hazır raporlar
 
 ---
 
